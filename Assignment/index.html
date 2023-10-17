@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 9 (Stopwatch⏰)</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    border: 5px double blue;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: auto;
+    background-color:rgb(141, 153, 242);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#stopwatch {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px 24px;
+    border-radius: 10px;
+    font-size: 50px;
+    font-weight: 600;
+    border: 5px double rgb(124, 124, 255);
+}
+
+button {
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 5px double rgb(124, 124, 255);
+
+}
+
+button:hover {
+    background-color: rgb(179, 179, 255);
+}
+
+</style>
+<body>
+    <h1><b>Stop Watch⏰</b></h1>
+    <p id="stopwatch">00 : 00 : 00</p>
+    <button  class="stop" onclick="stop()">Stop</button>
+    <button  class="Start" onclick="start()">Start</button>
+    <button  class="Reset" onclick="reset()">Reset</button>
+    <script>
+        var ms = 0, sec =0; min = 0;
+        var timer;
+        function start(){
+            timer = setInterval(function() {
+                ms++;
+                if (ms == 100) {
+                    sec++;
+                    ms = 0;
+                }
+                if (sec == 60) {
+                    min++;
+                    sec = 0;
+                }
+                document.getElementById("stopwatch").innerHTML =
+                    (min < 10 ? "0" + min : min) + ":" +
+                    (sec < 10 ? "0" + sec : sec) + ":" +
+                    (ms < 10 ? "0" + ms : ms);
+            }, 10);
+        } 
+        function stop(){
+            clearInterval(timer);
+        }
+        function reset(){
+            ms = 0;
+            sec = 0;
+            min = 0;
+            clearInterval(timer);
+            document.getElementById("stopwatch").innerHTML = "00:00:00";
+        }
+    </script>
+</body>
+</html>
